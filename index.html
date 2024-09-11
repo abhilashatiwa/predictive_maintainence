@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Maintenance</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+<body>
+    <header>
+        <nav class="not-navbar"><a href=""><img src="../static/assets/logo.png"></a></nav>
+        <nav>
+          <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            <li><a href="/passbook">Passbook</a></li>
+            <li><a href="/schedule">Schedule</a></li>
+          </ul>
+        </nav>
+        <nav class="not-navbar">
+            {% if machine_no %}
+                <span style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color:white; font-size:18px">Machine No: {{ machine_no }}</span>
+                <a href="/logout" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color:white; text-decoration:none; font-size:18px">Logout</a>
+            {% else %}
+                <a href="/login" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color:white; text-decoration:none; font-size:18px">Login/SignUp</a>
+            {% endif %}
+        </nav>
+    </header>
+    <div class="container">
+        <div class="info"></div>
+        <div class="details">
+            <h1 class="text-center">Please enter the details</h1>
+            <form method="POST" action="/predict">
+                <div class="form-group">
+                    <label for="operating_hours">Operating Hours</label>
+                    <input type="number" class="form-control" id="operating_hours" name="operating_hours" required>
+                </div>
+                <div class="form-group">
+                    <label for="temperature">Temperature (°C)</label>
+                    <input type="number" class="form-control" id="temperature" name="temperature" required>
+                </div>
+                <div class="form-group">
+                    <label for="vibration_level">Vibration Level (mm/s)</label>
+                    <input type="number" step="0.1" class="form-control" id="vibration_level" name="vibration_level" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age (years)</label>
+                    <input type="number" class="form-control" id="age" name="age" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Predict</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

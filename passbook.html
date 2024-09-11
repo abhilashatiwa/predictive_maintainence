@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Passbook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrQkK1wO7h2/BOyRZ6GxKv+CbGpYdTA7lX7A9h5spb1B/z1XFlTxd5p8Nzz/VZhxzW2gpkeBbA7LfEMaWQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/passbook.css">
+</head>
+<body>
+    <header>
+        <nav class="not-navbar"><a href=""><img src="../static/assets/logo.png"></a></nav>
+        <nav>
+          <ul class="navbar">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('schedule') }}" class="btn btn-primary">View Maintenance Schedule</a></li>
+            <li><a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a></li>
+          </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="passbook-header">
+            <h1>Passbook for Machine {{ machine_no }}</h1>
+        </div>
+        <ul class="event-list list-unstyled">
+            {% for event in events %}
+            <li>
+                <strong>Date:</strong> {{ event.date }}<br>
+                <strong>Description:</strong> {{ event.description }}<br>
+                <strong>Operating Hours:</strong> {{ event.operating_hours }}<br>
+                <strong>Days to Maintenance:</strong> {{ event.days_to_maintenance }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
